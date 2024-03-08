@@ -208,7 +208,7 @@ namespace Albergo.Models
             }
         }
 
-
+        //Metodo per il recupero dell'id della camera attraverso il suo numero
         public static int GetIdCameraFromNumCamera(int numCamera)
         {
             int idCamera = 0;
@@ -238,6 +238,7 @@ namespace Albergo.Models
             return idCamera;
         }
 
+        //Metodo per l'update di una camera che prende in ingresso un oggetto Camera
         public static void AggiornaCamera(Camera cameraDaAggiornare)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -274,6 +275,7 @@ namespace Albergo.Models
             }
         }
 
+        //Metodo per il recupero di una camera attraverso il suo ID
         public static Camera GetCameraById(int id)
         {
             Camera camera = null;
