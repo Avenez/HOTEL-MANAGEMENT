@@ -107,6 +107,9 @@ namespace Albergo.Models
             return camere;
         }
 
+        //Metodo per ottenere una lista di camere
+        //Ritorna una lista di camere
+
         public static List<Camera> GetListaCamereDisp()
         {
             List<Camera> camere = new List<Camera>();
@@ -133,10 +136,12 @@ namespace Albergo.Models
                     camere.Add(camera);
                 }
             }
-
+            //Ritorna una lista di camere
             return camere;
         }
 
+
+        //Metodo che elimina una camera tramite ID
         public static void EliminaCamera(int idCamera)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -169,6 +174,7 @@ namespace Albergo.Models
             }
         }
 
+        //Metodo per il cambio di disponibilità di una camera tramite ID e il valore BOOL
         public static void UpdateDispCamera(int idCamera, bool disponibile)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -201,6 +207,7 @@ namespace Albergo.Models
                 conn.Close();
             }
         }
+
 
         public static int GetIdCameraFromNumCamera(int numCamera)
         {
