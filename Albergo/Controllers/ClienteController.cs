@@ -23,6 +23,7 @@ namespace Albergo.Controllers
             return View();
         }
 
+        //Action che crea un nuovo cliente attraverso il metodo statico nel model e da un feed alla creazione
         [HttpPost]
         public ActionResult CreateCliente(Cliente C)
         {
@@ -49,7 +50,7 @@ namespace Albergo.Controllers
 
         }
 
-
+        //Action recupera una lista di clienti attraverso il metodo statico nel model
         [HttpGet]
         public ActionResult ListClienti() 
         {
@@ -59,7 +60,7 @@ namespace Albergo.Controllers
             return View();
         }
 
-
+        //Action recupera un clienti attraverso il metodo statico nel model
         [HttpGet]
         public ActionResult EditCliente(int idCliente)
         {
@@ -69,6 +70,7 @@ namespace Albergo.Controllers
             return View(Cliente) ;
         }
 
+        //Action edita un clienti attraverso il metodo statico nel model
         [HttpPost]
         public ActionResult EditCliente(Cliente C)
         {
@@ -97,7 +99,7 @@ namespace Albergo.Controllers
             
         }
 
-
+        //Action che elimina un clienti attraverso il metodo statico nel model
         [HttpGet]
         public ActionResult DelCliente (int idCliente) 
         {

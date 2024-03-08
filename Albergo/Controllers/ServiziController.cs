@@ -16,6 +16,9 @@ namespace Albergo.Controllers
             return View();
         }
 
+
+        //Action che recupera una lista di servizi per popolare la dropdown
+        //Recupera anche tutti i servizi aggiuntivi di una data prenotazione e la prenotazione stessa mediante il metodo nel model
         [HttpGet]
         public ActionResult ListServizi(int idPrenotazione) 
         {
@@ -34,6 +37,7 @@ namespace Albergo.Controllers
             return View();
         }
 
+        //Action che aggiunge un servizio aggiuntivo alla prenotazione mediante il metodo nel model
         [HttpPost]
         public ActionResult ListServizi(ServizioAggiuntivo Se)
         {
@@ -60,7 +64,7 @@ namespace Albergo.Controllers
 
         }
 
-
+        //Action che elimina il servizio aggiuntivo mediante il metodo nel model
         [HttpGet]
         public ActionResult DelServizio(int idPrenotazione, DateTime Data, string Descrizione)
         {

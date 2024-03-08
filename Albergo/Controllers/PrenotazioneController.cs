@@ -17,7 +17,7 @@ namespace Albergo.Controllers
             return View();
         }
 
-
+        //Action che che recupera la lista dei clienti e delle camere per poter popolare i dropddown
         [HttpGet]
         public ActionResult CreatePrenotazione()
         {
@@ -49,6 +49,10 @@ namespace Albergo.Controllers
             return View();
         }
 
+        //Action per creare una prenotazione 
+        //1)Inserisce una prenotazione 
+        //2)Setta la camera della prenotazione come non dsiponibile
+        //3)Invia un feed All'utente
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreatePrenotazione(Prenotazione P)
@@ -79,7 +83,7 @@ namespace Albergo.Controllers
 
         }
 
-
+        //Action che recupera la lista di prenotazioni
         [HttpGet]
         public ActionResult ListPrenotazioni()
         {
@@ -89,7 +93,9 @@ namespace Albergo.Controllers
             return View();
         }
 
-
+        //Action che edita una prenotazione
+        //1)Fa tornare la camera disponibile così in caso di scelta della stessa questa torna non disponibile e viceversa
+        //2)recupera la lista di camere disponibili
         [HttpGet]
         public ActionResult EditPrenotazione(int idPrenotazione)
         {
@@ -112,6 +118,8 @@ namespace Albergo.Controllers
             return View(Prenotazione);
         }
 
+
+        //Action che fa l'edit della prenotazione e della camera scelta
         [HttpPost]
         public ActionResult EditPrenotazione(Prenotazione P)
         {
@@ -142,7 +150,7 @@ namespace Albergo.Controllers
 
         }
 
-
+        //Action che eleimina la prenotazione e fa tornare disponibile la prenotazione ed eleimina i servizi aggiuntivi richiesti
         [HttpGet]
         public ActionResult DelPrenotazione(int idPrenotazione)
         {

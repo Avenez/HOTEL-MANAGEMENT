@@ -18,6 +18,7 @@ namespace Albergo.Controllers
             return View();
         }
 
+        //Action Asincrona per il recupero di tutte le prenotazioni "Pensione Completa"
         [HttpGet]
         public JsonResult Ricerca() 
         {
@@ -27,7 +28,8 @@ namespace Albergo.Controllers
             return Json(ListPensioniComplete, JsonRequestBehavior.AllowGet);
         }
 
-
+        //Action Asincrona per il recupero di tutte le prenotazioni CF
+        //Non implementata nella view per mancanza di tempo
         [HttpGet]
         public JsonResult Ricerca2(string CF) 
         {

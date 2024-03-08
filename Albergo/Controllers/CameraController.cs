@@ -23,6 +23,8 @@ namespace Albergo.Controllers
             return View();
         }
 
+
+        //Action per creare una camera attraverso metodi statici nel modello
         [HttpPost]
         public ActionResult CreateCamera(Camera Ca)
         {
@@ -49,6 +51,8 @@ namespace Albergo.Controllers
 
         }
 
+
+        //Action per ottenere una lista di camere  attraverso metodi statici nel modello
         [HttpGet]
         public ActionResult ListCamere()
         {
@@ -59,6 +63,8 @@ namespace Albergo.Controllers
         }
 
 
+
+        //Action GET di edit delle camere
         [HttpGet]
         public ActionResult EditCamera(int idCamera)
         {
@@ -68,6 +74,8 @@ namespace Albergo.Controllers
             return View(Camera);
         }
 
+
+        //Action POST di edit delle camere
         [HttpPost]
         public ActionResult EditCamera(Camera Ca)
         {
@@ -97,7 +105,7 @@ namespace Albergo.Controllers
 
         }
 
-
+        //Action Per eliminare una camera attraverso il ,metodo statico nel model
         [HttpGet]
         public ActionResult DelCamera(int idCamera)
         {

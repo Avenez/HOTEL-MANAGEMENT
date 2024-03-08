@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                        <li class="d-flex ms-2 na">@Html.ActionLink("Cerca Prenotazione", "CercaSpedizione", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        @*<li class="d-flex ms-2 na">@Html.ActionLink("Cerca Prenotazione", "CercaSpedizione", "Home", new { area = "" }, new { @class = "nav-link" })</li>*@
 
 
                         @if (Request.Cookies[".ASPXAUTH"] != null)
