@@ -33,6 +33,9 @@ namespace Albergo.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    Prenotazione Prenotazione = Prenotazione.GetPrenotazioneById(idPrenotazione);
+                    int idCamera = Camera.GetIdCameraFromNumCamera(Prenotazione.NumCamera);
+                    Camera.UpdateDispCamera(idCamera, true);
                     Prenotazione.CancellaPrenotazione(idPrenotazione);
                     ServizioAggiuntivo.CancellaServiziAggiuntivi(idPrenotazione);
                     Session["Inserimento"] = true;
