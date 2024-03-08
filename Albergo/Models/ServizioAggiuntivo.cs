@@ -46,8 +46,8 @@ namespace Albergo.Models
         }
 
 
-        
-            public static void InsertServizioAggiuntivo(ServizioAggiuntivo nuovoServizioAggiuntivo)
+        //Metodo Per l'inserimento di un ServizioAggiuntivo
+        public static void InsertServizioAggiuntivo(ServizioAggiuntivo nuovoServizioAggiuntivo)
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
                 SqlConnection conn = new SqlConnection(connectionString);
@@ -76,7 +76,8 @@ namespace Albergo.Models
                 }
             }
 
-            public static List<ServizioAggiuntivo> GetListaServiziAggiuntivi(int idPrenotazione)
+        //Metodo per la creazione di una lista di ServizioAggiuntivo
+        public static List<ServizioAggiuntivo> GetListaServiziAggiuntivi(int idPrenotazione)
             {
                 List<ServizioAggiuntivo> serviziAggiuntivi = new List<ServizioAggiuntivo>();
 
@@ -114,9 +115,12 @@ namespace Albergo.Models
                     conn.Close();
                 }
 
-                return serviziAggiuntivi;
+            //Ritorna la lista di ServizioAggiuntivo
+            return serviziAggiuntivi;
             }
 
+
+        //Metodo per la cancellazione dei servizi aggiuntivi relativi ad un idPrenotazione
         public static void CancellaServiziAggiuntivi(int idPrenotazione)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -149,7 +153,10 @@ namespace Albergo.Models
             }
         }
 
-
+        //Metodo per la cancellazione di servizi aggiuntivi attraverso il controllo di :
+        //-id della prenotazione
+        //-Data aggiunta
+        //-descrizione
         public static void CancellaServiziAggiuntiviIdDateDe(int idPrenotazione, DateTime data, string descrizione)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();

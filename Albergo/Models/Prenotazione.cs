@@ -142,7 +142,7 @@ namespace Albergo.Models
             return prenotazioni;
         }
 
-
+        //Metodo per la cancellazione di una prenotazione attraverso l'ID
         public static void CancellaPrenotazione(int idPrenotazione)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -175,6 +175,7 @@ namespace Albergo.Models
             }
         }
 
+        //Metodo per l'aggiornamento di una prenotazione
         public static void AggiornaPrenotazione(Prenotazione prenotazioneDaAggiornare)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -215,7 +216,7 @@ namespace Albergo.Models
             }
         }
 
-
+        //Metodo per il recupero di una prenotazione tramite ID
         public static Prenotazione GetPrenotazioneById(int id)
         {
             Prenotazione prenotazione = null;

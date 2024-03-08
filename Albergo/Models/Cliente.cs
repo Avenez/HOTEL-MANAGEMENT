@@ -73,7 +73,7 @@ namespace Albergo.Models
         }
 
 
-
+        //Metodo per l'inserimento di un nuovo cliente che orende in ingresso un oggetto Cliente
         public static void InserisciNuovoCliente(Cliente nuovoCliente)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -105,6 +105,7 @@ namespace Albergo.Models
             }
         }
 
+        //metodo che recupera una list di clienti
         public static List<Cliente> GetListaClienti()
         {
             List<Cliente> clienti = new List<Cliente>();
@@ -134,9 +135,11 @@ namespace Albergo.Models
                 }
             }
 
+            //Restituisce una lista di clienti
             return clienti;
         }
 
+        //Metodo per eliminare un cliente attraverso il suo id
         public static void EliminaCliente(int idCliente)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -169,6 +172,7 @@ namespace Albergo.Models
             }
         }
 
+        //Metodo per l'edit di un cliente
         public static void AggiornaCliente(Cliente clienteDaAggiornare)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -208,7 +212,7 @@ namespace Albergo.Models
             }
         }
 
-
+        //Metodo per la ricerca di un cliente attraverso l'id
         public static Cliente GetClienteById(int id)
         {
             Cliente cliente = null;
@@ -249,6 +253,7 @@ namespace Albergo.Models
                 conn.Close();
             }
 
+            //Restituisce un oggetto CLiente
             return cliente;
         }
 

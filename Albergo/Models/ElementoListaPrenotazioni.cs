@@ -54,6 +54,7 @@ namespace Albergo.Models
             TipoSoggiorno = tipoSoggiorno;
         }
 
+        //Metodo per la creazione di una Lista di ElementoListaPrenotazioni
         public static List<ElementoListaPrenotazioni> GetElementiListaPrenotazioni()
         {
             List<ElementoListaPrenotazioni> elementiListaPrenotazioni = new List<ElementoListaPrenotazioni>();
@@ -94,11 +95,11 @@ namespace Albergo.Models
             {
                 conn.Close();
             }
-
+            //Restituisce una lista di ElementoListaPrenotazioni
             return elementiListaPrenotazioni;
         }
 
-
+        //Metodo per la selezione di un ElementoListaPrenotazioni attraverso il suo id
         public static ElementoListaPrenotazioni GetElementoListaPrenotazioneById(int idPrenotazione)
         {
             ElementoListaPrenotazioni elementoListaPrenotazione = null;
@@ -145,7 +146,7 @@ namespace Albergo.Models
         }
 
 
-
+        //Metodo per la creazione di una Lista di ElementoListaPrenotazioni dove si ha PENSIONE COMPLETA
         public static List<ElementoListaPrenotazioni> GetElementiListaPrenotazioniPensione()
         {
             List<ElementoListaPrenotazioni> elementiListaPrenotazioni = new List<ElementoListaPrenotazioni>();
@@ -192,6 +193,8 @@ namespace Albergo.Models
             return elementiListaPrenotazioni;
         }
 
+
+        //Metodo che restituisce una lista di ElementoListaPrenotazioni cercando per CF
         public static List<ElementoListaPrenotazioni> GetElementiListaPrenotazioniCF(string CF)
         {
             List<ElementoListaPrenotazioni> elementiListaPrenotazioni = new List<ElementoListaPrenotazioni>();

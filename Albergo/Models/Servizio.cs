@@ -27,7 +27,7 @@ namespace Albergo.Models
             Descrizione = descrizione;
         }
 
-        // Metodo per inserire un nuovo servizio nella tabella Servizio
+        // Metodo per inserire un nuovo servizio nella tabella Servizio (NON USATO)
         public static void InserisciNuovoServizio(Servizio nuovoServizio)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
@@ -53,7 +53,7 @@ namespace Albergo.Models
             }
         }
 
-        // Metodo per ottenere una lista di servizi dalla tabella Servizio
+        // Metodo per ottenere una lista di servizi dalla tabella Servizio (POPOLAMENTO DROPDOWN)
         public static List<Servizio> GetServizi()
         {
             List<Servizio> servizi = new List<Servizio>();
@@ -80,6 +80,7 @@ namespace Albergo.Models
             return servizi;
         }
 
+        //Metodo Per l'eliminazione di un servizio (NON USATO)
         public static void EliminaServizio(int idServizio)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();

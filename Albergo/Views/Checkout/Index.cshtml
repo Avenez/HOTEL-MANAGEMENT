@@ -3,7 +3,16 @@
     ViewBag.Title = "Index";
     Albergo.Models.ElementoListaPrenotazioni Prenotazione = ViewBag.Prenotazione;
     List<Albergo.Models.ServizioAggiuntivo> listServiziAggiunti = ViewBag.listServiziAggiunti;
-    int Totale = Convert.ToInt32(Prenotazione.Costo - Prenotazione.Caparra);
+
+    int giorni = Convert.ToInt32((Prenotazione.DataFine - Prenotazione.DataInizio).TotalDays);
+
+    int Totale = Convert.ToInt32((Prenotazione.Costo - Prenotazione.Caparra) * giorni);
+
+    foreach (var item in listServiziAggiunti)
+    {
+        Totale += Convert.ToInt32(item.Prezzo * item.Qta);
+    }
+
 }
 
 <h2 class="text-white display-1 mt-3">Checkout</h2>
@@ -68,9 +77,6 @@
                                 <div class="col">@item.Prezzo €</div>
                             </div>
                         </div>
-                        {
-                            Totale += Convert.ToInt32(item.Prezzo * item.Qta);
-                        }
                     }
 
                 </div>
