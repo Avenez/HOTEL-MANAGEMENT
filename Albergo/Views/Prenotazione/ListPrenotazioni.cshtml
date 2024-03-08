@@ -54,6 +54,9 @@
                                 <a href="@Url.Action("ListServizi", "Servizi" ,new { idPrenotazione = item.idPrenotazione })" class="btn btn-info mt-2">
                                     <i class="bi bi-plus-square"> Servizi</i>
                                 </a>
+                                <a href="@Url.Action("Index", "Checkout" ,new { idPrenotazione = item.idPrenotazione })" class="btn btn-outline-warning mt-2">
+                                    <i class="bi bi-door-closed"> Checkout </i>
+                                </a>
                             </div>
                         </div>
                     </div>

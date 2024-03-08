@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Albergo.Models.ElementoListaPrenotazioni Prenotazione = ViewBag.Prenotazione;
+    List<Albergo.Models.ServizioAggiuntivo> listServiziAggiunti = ViewBag.listServiziAggiunti;
+    int Totale = Convert.ToInt32(Prenotazione.Costo - Prenotazione.Caparra);
+}
+
+<h2 class="text-white display-1 mt-3">Checkout</h2>
+
+
+
+@Html.ActionLink("Back Office", "Backoffice", "Home", new { area = "" }, new { @class = " btn btn-dark" })
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <div class="row mt-2 mb-3  fw-bold text-white p-3 position-sticky">
+                <div class="col-1">Cognome</div>
+                <div class="col-2">Email</div>
+                <div class="col-1">Camera N°</div>
+                <div class="col">Data Prenotazione</div>
+                <div class="col">Inizio Soggiorno</div>
+                <div class="col">Fine Soggiorno</div>
+                <div class="col">Caparra</div>
+                <div class="col">Costo</div>
+                <div class="col">Tipo Soggiorno</div>
+
+            </div>
+
+            <div class="">
+                <div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">
+                    <div class="col-1">@Prenotazione.Cognome</div>
+                    <div class="col-2 overflow-hidden">@Prenotazione.Email</div>
+                    <div class="col-1">@Prenotazione.NumCamera</div>
+                    <div class="col">@Prenotazione.DataPrenotazione.ToShortDateString()</div>
+                    <div class="col">@Prenotazione.DataInizio.ToShortDateString()</div>
+                    <div class="col">@Prenotazione.DataFine.ToShortDateString()</div>
+                    <div class="col">@Prenotazione.Caparra €</div>
+                    <div class="col">@Prenotazione.Costo €</div>
+                    <div class="col">@Prenotazione.TipoSoggiorno</div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row text-white ">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <div class="row mt-2 mb-3  fw-bold text-white p-3 position-sticky">
+                        <div class="col">Descrizione</div>
+                        <div class="col">Data</div>
+                        <div class="col">Qta</div>
+                        <div class="col">Prezzo</div>
+
+                    </div>
+
+                    @foreach (var item in listServiziAggiunti)
+                    {
+                        <div class="cardHover">
+                            <div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">
+                                <div class="col">@item.Descrizione</div>
+                                <div class="col">@item.Data</div>
+                                <div class="col">@item.Qta</div>
+                                <div class="col">@item.Prezzo €</div>
+                            </div>
+                        </div>
+                        {
+                            Totale += Convert.ToInt32(item.Prezzo * item.Qta);
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    @Html.ActionLink("Checkout", "CheckoutAction", "Checkout" , new { idPrenotazione = Prenotazione.idPrenotazione }, new { @class = " btn btn-dark" })
+                </div>
+            </div>
+            <div class="row text-white">
+                <div class="col-12">
+                    <h2 class=" ms-auto">Totale</h2>
+                    <h3 class="display-5 ms-auto">@Totale €</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

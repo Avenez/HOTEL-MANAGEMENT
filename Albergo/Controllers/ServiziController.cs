@@ -43,7 +43,7 @@ namespace Albergo.Controllers
                     ServizioAggiuntivo.InsertServizioAggiuntivo(Se);
 
 
-                    return RedirectToAction("ListServizi", "Servizi");
+                    return RedirectToAction("ListServizi", "Servizi", new { idPrenotazione = Se.idPrenotazione });
                 }
                 else
                 {
@@ -57,6 +57,16 @@ namespace Albergo.Controllers
                 return View();
             }
 
+        }
+
+
+        [HttpGet]
+        public ActionResult DelServizio(int idPrenotazione, DateTime Data, string Descrizione)
+        {
+            ServizioAggiuntivo.CancellaServiziAggiuntiviIdDateDe(idPrenotazione, Data, Descrizione);
+
+
+            return RedirectToAction("ListServizi", "Servizi", new { idPrenotazione = idPrenotazione });
         }
     }
 }

@@ -6,7 +6,7 @@
     List<Albergo.Models.ServizioAggiuntivo> listServiziAggiunti = ViewBag.listServiziAggiunti;
 }
 
-
+@Html.ActionLink("Back Office", "Backoffice", "Home", new { area = "" }, new { @class = " btn btn-dark" })
 
 <div class="container">
 
@@ -24,37 +24,36 @@
                 <div class="col">Caparra</div>
                 <div class="col">Costo</div>
                 <div class="col">Tipo Soggiorno</div>
-                
+
             </div>
 
-                <div class="">
-                    <div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">
+            <div class="">
+                <div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">
 
 
-                        <div class="col-1">@Prenotazione.Cognome</div>
-                        <div class="col-2 overflow-hidden">@Prenotazione.Email</div>
-                        <div class="col-1">@Prenotazione.NumCamera</div>
-                        <div class="col">@Prenotazione.DataPrenotazione.ToShortDateString()</div>
-                        <div class="col">@Prenotazione.DataInizio.ToShortDateString()</div>
-                        <div class="col">@Prenotazione.DataFine.ToShortDateString()</div>
-                        <div class="col">@Prenotazione.Caparra €</div>
-                        <div class="col">@Prenotazione.Costo €</div>
-                        <div class="col">@Prenotazione.TipoSoggiorno</div>
-                        
-                    </div>
+                    <div class="col-1">@Prenotazione.Cognome</div>
+                    <div class="col-2 overflow-hidden">@Prenotazione.Email</div>
+                    <div class="col-1">@Prenotazione.NumCamera</div>
+                    <div class="col">@Prenotazione.DataPrenotazione.ToShortDateString()</div>
+                    <div class="col">@Prenotazione.DataInizio.ToShortDateString()</div>
+                    <div class="col">@Prenotazione.DataFine.ToShortDateString()</div>
+                    <div class="col">@Prenotazione.Caparra €</div>
+                    <div class="col">@Prenotazione.Costo €</div>
+                    <div class="col">@Prenotazione.TipoSoggiorno</div>
+
                 </div>
+            </div>
 
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
+    <div class="row text-white ">
+        <div class="col-4 border border-warning border-2 me-2">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
 
                 <div class="form-horizontal">
-                    <h4>ServizioAggiuntivo</h4>
-                    <hr />
+                    <h4>Aggiungi Servizio</h4>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -64,13 +63,13 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+                    @*<div class="form-group">
+                            @Html.LabelFor(model => model.Data, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Data, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Data, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Qta, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -98,11 +97,12 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Create" class="btn btn-default" />
+                            <input type="submit" value="Create" class="btn btn-outline-warning mt-2 mb-2 vw-100" />
                         </div>
                     </div>
                 </div>
             }
+
         </div>
         <div class="col">
             <div class="row">
@@ -110,11 +110,11 @@
                     <div class="row mt-2 mb-3  fw-bold text-white p-3 position-sticky">
 
 
-                        <div class="col-1">Descrizione</div>
-                        <div class="col-2">Data</div>
-                        <div class="col-1">Qta</div>
+                        <div class="col">Descrizione</div>
+                        <div class="col">Data</div>
+                        <div class="col">Qta</div>
                         <div class="col">Prezzo</div>
-                        <div class="col">idPrenotazione</div>
+
                         <div class="col">Controlli</div>
                     </div>
 
@@ -125,13 +125,13 @@
 
 
 
-                                <div class="col-1">@item.Descrizione</div>
-                                <div class="col-2 overflow-hidden">@item.Data</div>
-                                <div class="col-1">@item.Qta</div>
-                                <div class="col">@item.Prezzo</div>
-                                <div class="col">@item.idPrenotazione</div>
+                                <div class="col">@item.Descrizione</div>
+                                <div class="col">@item.Data</div>
+                                <div class="col">@item.Qta</div>
+                                <div class="col">@item.Prezzo €</div>
+
                                 <div class="col">
-                                    <a href="@Url.Action("DelPrenotazione", "Prenotazione" ,new { idPrenotazione = item.idPrenotazione })" class="btn btn-danger ms-1">
+                                    <a href="@Url.Action("DelServizio", "Servizi" ,new { idPrenotazione = item.idPrenotazione, Data = item.Data , Descrizione = item.Descrizione })" class="btn btn-danger ms-1">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </div>
