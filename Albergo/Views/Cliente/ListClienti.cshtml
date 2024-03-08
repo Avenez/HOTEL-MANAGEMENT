@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "ListClienti";
+    List<Albergo.Models.Cliente> ListClienti = ViewBag.ListClienti;
+}
+
+
+
+<div class="w-100">
+
+    @Html.ActionLink("Back Office", "Backoffice", "Home", new { area = "" }, new { @class = " btn btn-dark" })
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <div class="row mt-2 mb-3  fw-bold text-white p-3 position-sticky">
+                    <div class="col ">Email</div>
+                    <div class="col">Nome</div>
+                    <div class="col">Cognome</div>
+                    <div class="col">CF</div>
+                    <div class="col">Città</div>
+                    <div class="col">Tel</div>
+                    <div class="col">Controlli</div>
+                </div>
+
+                @foreach (var item in ListClienti)
+                { 
+                    <div class="cardHover">
+                        <div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">
+                            <div class="col ">@item.Email</div>
+                            <div class="col">@item.Nome</div>
+                            <div class="col">@item.Cognome</div>
+                            <div class="col">@item.CF</div>
+                            <div class="col">@item.Citta</div>
+                            <div class="col">@item.Tel</div>
+                            <div class="col">
+
+                                <a href="@Url.Action("EditCliente", "Cliente", new { idCliente = item.idCliente })" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="@Url.Action("DelCliente", "Cliente" ,new { idCliente = item.idCliente })" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                }
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

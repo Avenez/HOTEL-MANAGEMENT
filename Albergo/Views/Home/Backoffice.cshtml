@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Backoffice";
+    var feedBack = Session["Messaggio"];
+    bool inserimento = (bool)TempData["Inserimento"];
+}
+
+<div class="container">
+    <div id="alert" class="alert alert-warning @((inserimento == true ? "d-block" : "d-none" )) " role="alert">
+        @feedBack
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="row g-4 justify-content-between">
+
+                <div class="col-3 slide-in-right cardHover" style="background-image: url(/Images/Azienda2.jpg); background-size: cover; background-repeat: no-repeat;">
+                    <div class="p-4 d-flex flex-column" style="height: 600px;">
+                        <h2 class="display-6">Cliente</h2>
+                        @Html.ActionLink("Aggiungi", "CreateCliente", "Cliente", new { area = "" }, new { @class = "btn btn-dark mt-auto" })
+                        @Html.ActionLink("Gestisci Clienti", "ListClienti", "Cliente", new { area = "" }, new { @class = "btn btn-warning mt-3" })
+
+                    </div>
+                </div>
+
+                <div class="col-3 slide-in-right-1 cardHover" style="background-image: url(/Images/privato.jpg); background-size: cover; background-repeat: no-repeat;">
+                    <div class="p-4 d-flex flex-column" style="height: 600px;">
+                        <h2 class="display-6">Camera</h2>
+                        @Html.ActionLink("Aggiungi", "CreateCamera", "Camera", new { area = "" }, new { @class = "btn btn-dark mt-auto" })
+                        @Html.ActionLink("Gestisci Camere", "ListCamere", "Camera", new { area = "" }, new { @class = "btn btn-warning mt-3" })
+                    </div>
+                </div>
+
+                <div class="col-3 cardHover  slide-in-right-2" style="background-image: url(/Images/spedizione.jpg); background-size: cover; background-repeat: no-repeat;">
+                    <div class="p-4 d-flex flex-column" style="height: 600px;">
+                        <h2 class="display-6">Prenotazione</h2>
+                        @Html.ActionLink("Aggiungi", "CreatePrenotazione", "Prenotazione", new { area = "" }, new { @class = "btn btn-dark mt-auto" })
+                        @Html.ActionLink("Gestisci Prenotazioni", "ListPrenotazioni", "Prenotazione", new { area = "" }, new { @class = "btn btn-warning mt-3" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <a href="/Home/Statistics" class="text-decoration-none">
+        <div class="row mt-3 cardHover slide-in-bottom cursor text-black" style="background-image: url(/Images/BGSTATISTICS.jpg); background-size:cover;">
+            <div class="col p-5">
+                <h1>Logistica</h1>
+                <p>Dati sulla Logistica e statistiche giornaliere</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+
+<script>
+    // Verifica se c'è un feedback da mostrare e mostra l'alert se presente
+    var alertDiv = document.getElementById('alert');
+    if (alertDiv.classList.contains('d-block')) {
+        setTimeout(function () {
+            alertDiv.classList.remove('d-none');
+            alertDiv.classList.add('d-none'); // Rimuovi la classe per nascondere l'alert dopo 4 secondi
+        }, 4000);
+    }
+</script>
+

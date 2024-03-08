@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "ListCamere";
+}
+
+
+@{
+    ViewBag.Title = "ListClienti";
+    List<Albergo.Models.Camera> ListCamere = ViewBag.ListCamere;
+}
+
+
+
+<div class="w-100">
+
+    @Html.ActionLink("Back Office", "Backoffice", "Home", new { area = "" }, new { @class = " btn btn-dark" })
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <div class="row mt-2 mb-3  fw-bold text-white p-3 position-sticky">
+                    <div class="col ">Camera N°</div>
+                    <div class="col">Descrizione</div>
+                    <div class="col">Tipologia</div>
+                    <div class="col">Disponibilità</div>
+                    <div class="col">Controlli</div>
+                </div>
+
+                @foreach (var item in ListCamere)
+                {
+                    <div class="cardHover">
+                        <div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">
+                            <div class="col ">@item.NumCamera</div>
+                            <div class="col">@item.Descrizione</div>
+                            <div class="col">@item.Tipo</div>
+                            <div class="col">@item.Disponibile</div>
+                            <div class="col">
+
+                                <a href="@Url.Action("EditCamera", "Camera", new { idCamera = item.idCamera })" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="@Url.Action("DelCamera", "Camera" ,new { idCamera = item.idCamera })" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

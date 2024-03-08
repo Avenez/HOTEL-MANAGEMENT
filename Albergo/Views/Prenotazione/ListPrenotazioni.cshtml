@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "ListPrenotazioni";
+    List<Albergo.Models.ElementoListaPrenotazioni> listPrenotazioni = ViewBag.listPrenotazioni;
+}
+
+<div class="w-100">
+
+    @Html.ActionLink("Back Office", "Backoffice", "Home", new { area = "" }, new { @class = " btn btn-dark" })
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+                <div class="row mt-2 mb-3  fw-bold text-white p-3 position-sticky">
+                    
+                    
+                    <div class="col-1">Cognome</div>
+                    <div class="col-2">Email</div>
+                    <div class="col-1">Camera N°</div>
+                    <div class="col">Data Prenotazione</div>
+                    <div class="col">Inizio Soggiorno</div>
+                    <div class="col">Fine Soggiorno</div>
+                    <div class="col">Caparra</div>
+                    <div class="col">Costo</div>
+                    <div class="col">Tipo Soggiorno</div>
+                    <div class="col">Controlli</div>
+                </div>
+
+                @foreach (var item in listPrenotazioni)
+                {
+                    <div class="cardHover">
+                        <div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">
+                            
+                          
+                            <div class="col-1">@item.Cognome</div>
+                            <div class="col-2 overflow-hidden">@item.Email</div>
+                            <div class="col-1">@item.NumCamera</div>
+                            <div class="col">@item.DataPrenotazione.ToShortDateString()</div>
+                            <div class="col">@item.DataInizio.ToShortDateString()</div>
+                            <div class="col">@item.DataFine.ToShortDateString()</div>
+                            <div class="col">@item.Caparra €</div>
+                            <div class="col">@item.Costo €</div>
+                            <div class="col">@item.TipoSoggiorno</div>
+                            <div class="col">
+
+                                <a href="@Url.Action("EditPrenotazione", "Prenotazione", new { idPrenotazione = item.idPrenotazione })" class="btn btn-warning">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="@Url.Action("DelPrenotazione", "Prenotazione" ,new { idPrenotazione = item.idPrenotazione })" class="btn btn-danger ms-1">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                                <a href="@Url.Action("ListServiziAggiunti", "Servizi" ,new { idPrenotazione = item.idPrenotazione })" class="btn btn-info mt-2">
+                                    <i class="bi bi-plus-square"> Servizi</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
