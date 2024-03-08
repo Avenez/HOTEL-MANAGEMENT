@@ -2,6 +2,8 @@
     ViewBag.Title = "Index";
 }
 
+@Html.ActionLink("Back Office", "Backoffice", "Home", new { area = "" }, new { @class = " btn btn-dark" })
+
 <h2 class="display-1 text-white">Ricerca</h2>
 <div class="container">
     <div class="row">
@@ -13,6 +15,8 @@
         </div>
     </div>
 </div>
+
+
 
 @section scripts{
     <script type="text/javascript">
@@ -27,7 +31,7 @@
                         var dataPrenotazione = new Date(parseInt(item.DataPrenotazione.substr(6)));
                         var dataInizio = new Date(parseInt(item.DataInizio.substr(6)));
                         var dataFine = new Date(parseInt(item.DataFine.substr(6)));
-                       
+
                         pensioniCompleteHTML += '<div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">';
                         pensioniCompleteHTML += '<div class="col">' + item.idPrenotazione + '</div>';
                         pensioniCompleteHTML += '<div class="col">' + item.Email + '</div>';
