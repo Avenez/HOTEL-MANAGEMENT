@@ -25,7 +25,7 @@ namespace Albergo.Controllers
 
 
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult CheckoutAction(int idPrenotazione)
         {
 
