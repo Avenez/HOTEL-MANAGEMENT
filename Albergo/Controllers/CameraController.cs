@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Albergo.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CameraController : Controller
     {
         // GET: Camera

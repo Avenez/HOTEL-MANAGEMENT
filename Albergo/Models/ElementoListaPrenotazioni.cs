@@ -145,5 +145,97 @@ namespace Albergo.Models
         }
 
 
+
+        public static List<ElementoListaPrenotazioni> GetElementiListaPrenotazioniPensione()
+        {
+            List<ElementoListaPrenotazioni> elementiListaPrenotazioni = new List<ElementoListaPrenotazioni>();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT Prenotazione.idPrenotazione, Cliente.Nome, Cliente.Cognome, Cliente.Email, Prenotazione.NumCamera, Prenotazione.DataPrenotazione, Prenotazione.DataInizio, Prenotazione.DataFine, Prenotazione.Caparra, Prenotazione.Costo, Prenotazione.TipoSoggiorno FROM Prenotazione LEFT JOIN Cliente ON Prenotazione.idCliente = Cliente.idCliente WHERE TipoSoggiorno = @TipoSoggiorno", conn);
+                cmd.Parameters.AddWithValue("@TipoSoggiorno", "Pensione Completa");
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    elementiListaPrenotazioni.Add(new ElementoListaPrenotazioni(
+                        (int)reader["idPrenotazione"],
+                        reader["Nome"].ToString(),
+                        reader["Cognome"].ToString(),
+                        reader["Email"].ToString(),
+                        (int)reader["NumCamera"],
+                        (DateTime)reader["DataPrenotazione"],
+                        (DateTime)reader["DataInizio"],
+                        (DateTime)reader["DataFine"],
+                        (decimal)reader["Caparra"],
+                        (decimal)reader["Costo"],
+                        reader["TipoSoggiorno"].ToString()
+                    ));
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return elementiListaPrenotazioni;
+        }
+
+        public static List<ElementoListaPrenotazioni> GetElementiListaPrenotazioniCF(string CF)
+        {
+            List<ElementoListaPrenotazioni> elementiListaPrenotazioni = new List<ElementoListaPrenotazioni>();
+
+            string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            try
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT Prenotazione.idPrenotazione, Cliente.Nome, Cliente.Cognome, Cliente.Email, Prenotazione.NumCamera, Prenotazione.DataPrenotazione, Prenotazione.DataInizio, Prenotazione.DataFine, Prenotazione.Caparra, Prenotazione.Costo, Prenotazione.TipoSoggiorno FROM Prenotazione LEFT JOIN Cliente ON Prenotazione.idCliente = Cliente.idCliente WHERE Cliente.CF = @CF", conn);
+                cmd.Parameters.AddWithValue("@CF", CF);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    elementiListaPrenotazioni.Add(new ElementoListaPrenotazioni(
+                        (int)reader["idPrenotazione"],
+                        reader["Nome"].ToString(),
+                        reader["Cognome"].ToString(),
+                        reader["Email"].ToString(),
+                        (int)reader["NumCamera"],
+                        (DateTime)reader["DataPrenotazione"],
+                        (DateTime)reader["DataInizio"],
+                        (DateTime)reader["DataFine"],
+                        (decimal)reader["Caparra"],
+                        (decimal)reader["Costo"],
+                        reader["TipoSoggiorno"].ToString()
+                    ));
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return elementiListaPrenotazioni;
+        }
+
+
     }
 }

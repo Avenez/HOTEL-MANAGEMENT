@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Albergo.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ServiziController : Controller
     {
         // GET: Servizi
