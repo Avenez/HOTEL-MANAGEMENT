@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="display-1 text-white">Ricerca</h2>
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-12">
+            <h5 class="mt-5 display-5 text-white"> Pensioni Complete</h5>
+            <div id="pensioniCompleteList"></div> <!-- Changed ID here -->
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: 'Ricerca',
+                type: 'GET',
+                dataType: "json",
+                success: function (data) {
+                    var pensioniCompleteHTML = '';
+                    $.each(data, function (index, item) {
+                        var dataPrenotazione = new Date(parseInt(item.DataPrenotazione.substr(6)));
+                        var dataInizio = new Date(parseInt(item.DataInizio.substr(6)));
+                        var dataFine = new Date(parseInt(item.DataFine.substr(6)));
+                       
+                        pensioniCompleteHTML += '<div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">';
+                        pensioniCompleteHTML += '<div class="col">' + item.idPrenotazione + '</div>';
+                        pensioniCompleteHTML += '<div class="col">' + item.Email + '</div>';
+                        pensioniCompleteHTML += '<div class="col">' + item.NumCamera + '</div>';
+                        pensioniCompleteHTML += '<div class="col">' + dataPrenotazione.toLocaleDateString() + '</div>';
+                        pensioniCompleteHTML += '<div class="col">' + dataInizio.toLocaleDateString() + '</div>';
+                        pensioniCompleteHTML += '<div class="col">' + dataFine.toLocaleDateString() + '</div>';
+                        pensioniCompleteHTML += '<div class="col">' + item.Caparra + ' € </div>';
+                        pensioniCompleteHTML += '<div class="col">' + item.Costo + ' € </div>';
+                        pensioniCompleteHTML += '<div class="col">' + item.TipoSoggiorno + '</div>';
+                        pensioniCompleteHTML += '</div>';
+                    });
+                    $('#pensioniCompleteList').html(pensioniCompleteHTML); // Update the HTML with the results
+                },
+                error: function (err) {
+                    console.error('Errore durante la richiesta AJAX:', err);
+                }
+            });
+        });
+    </script>
+}

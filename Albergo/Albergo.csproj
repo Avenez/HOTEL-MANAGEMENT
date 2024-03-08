@@ -219,10 +219,10 @@
     <Content Include="Views\Prenotazione\EditPrenotazione.cshtml" />
     <Content Include="Views\Servizi\ListServizi.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\Ricerca\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ricerca\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

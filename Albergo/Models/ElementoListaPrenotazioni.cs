@@ -155,9 +155,10 @@ namespace Albergo.Models
 
             try
             {
+                string pensione = "Pensione Completa";
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT Prenotazione.idPrenotazione, Cliente.Nome, Cliente.Cognome, Cliente.Email, Prenotazione.NumCamera, Prenotazione.DataPrenotazione, Prenotazione.DataInizio, Prenotazione.DataFine, Prenotazione.Caparra, Prenotazione.Costo, Prenotazione.TipoSoggiorno FROM Prenotazione LEFT JOIN Cliente ON Prenotazione.idCliente = Cliente.idCliente WHERE TipoSoggiorno = @TipoSoggiorno", conn);
-                cmd.Parameters.AddWithValue("@TipoSoggiorno", "Pensione Completa");
+                cmd.Parameters.AddWithValue("@TipoSoggiorno", pensione);
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())

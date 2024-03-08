@@ -19,22 +19,23 @@ namespace Albergo.Controllers
         }
 
         [HttpGet]
-        public ActionResult Ricerca() 
+        public JsonResult Ricerca() 
         {
+            System.Diagnostics.Debug.WriteLine("RICERCA");
             List<ElementoListaPrenotazioni> ListPensioniComplete = ElementoListaPrenotazioni.GetElementiListaPrenotazioniPensione();
-            ViewBag.ListPensioniComplete = ListPensioniComplete;
 
-            return View();
+            return Json(ListPensioniComplete, JsonRequestBehavior.AllowGet);
         }
+
 
         [HttpGet]
         public JsonResult Ricerca2(string CF) 
         {
             List<ElementoListaPrenotazioni> ListaPrenotazioniCF = ElementoListaPrenotazioni.GetElementiListaPrenotazioniCF(CF);
 
-            var jsonData = ListaPrenotazioniCF;
+            var jsonData2 = ListaPrenotazioniCF;
 
-            return Json(jsonData, JsonRequestBehavior.AllowGet);
+            return Json(jsonData2, JsonRequestBehavior.AllowGet);
         }
     }
 }
