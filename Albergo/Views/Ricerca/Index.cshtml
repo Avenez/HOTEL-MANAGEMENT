@@ -5,9 +5,17 @@
 @Html.ActionLink("Back Office", "Backoffice", "Home", new { area = "" }, new { @class = " btn btn-dark" })
 
 <h2 class="display-1 text-white">Ricerca</h2>
+<label class="fw-bold text-white">Inserisci un CF</label>
+<form id="myForm mt-2">
+    
+    <input type="text" id="myParameter" name="myParameter" required>
+    <button type="button" id="submitButton" class="btn btn-warning">Cerca</button>
+</form>
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col-12">
+            <h5 class="mt-5 display-5 text-white"> Prenotazioni del CF specificato</h5>
+            <div id="prenotazioniCF"></div>
         </div>
         <div class="col-12">
             <h5 class="mt-5 display-5 text-white"> Pensioni Complete</h5>
@@ -44,11 +52,47 @@
                         pensioniCompleteHTML += '<div class="col">' + item.TipoSoggiorno + '</div>';
                         pensioniCompleteHTML += '</div>';
                     });
-                    $('#pensioniCompleteList').html(pensioniCompleteHTML); // Update the HTML with the results
+                    $('#pensioniCompleteList').html(pensioniCompleteHTML); 
                 },
                 error: function (err) {
                     console.error('Errore durante la richiesta AJAX:', err);
                 }
+
+            });
+
+
+            $('#submitButton').click(function () {
+                var parameterValue = $('#myParameter').val();
+
+                $.ajax({
+                    url: 'Ricerca2?CF=' + parameterValue, // Aggiungi il parametro CF direttamente all'URL
+                    method: 'GET',
+                    dataType: "json",
+                    success: function (data) {
+                        var prenotazioniCFHTML = '';
+                        $.each(data, function (index, item) {
+                            var dataPrenotazione = new Date(parseInt(item.DataPrenotazione.substr(6)));
+                            var dataInizio = new Date(parseInt(item.DataInizio.substr(6)));
+                            var dataFine = new Date(parseInt(item.DataFine.substr(6)));
+
+                            prenotazioniCFHTML += '<div class="row fw-bold p-3 text-white glass mb-3 cursor swing-in-top-fwd">';
+                            prenotazioniCFHTML += '<div class="col">' + item.idPrenotazione + '</div>';
+                            prenotazioniCFHTML += '<div class="col">' + item.Email + '</div>';
+                            prenotazioniCFHTML += '<div class="col">' + item.NumCamera + '</div>';
+                            prenotazioniCFHTML += '<div class="col">' + dataPrenotazione.toLocaleDateString() + '</div>';
+                            prenotazioniCFHTML += '<div class="col">' + dataInizio.toLocaleDateString() + '</div>';
+                            prenotazioniCFHTML += '<div class="col">' + dataFine.toLocaleDateString() + '</div>';
+                            prenotazioniCFHTML += '<div class="col">' + item.Caparra + ' € </div>';
+                            prenotazioniCFHTML += '<div class="col">' + item.Costo + ' € </div>';
+                            prenotazioniCFHTML += '<div class="col">' + item.TipoSoggiorno + '</div>';
+                            prenotazioniCFHTML += '</div>';
+                        });
+                        $('#prenotazioniCF').html(prenotazioniCFHTML);
+                    },
+                    error: function (err) {
+                        console.error('Errore durante la richiesta AJAX:', err);
+                    }
+                });
             });
         });
     </script>

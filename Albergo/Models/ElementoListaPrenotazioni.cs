@@ -197,6 +197,8 @@ namespace Albergo.Models
         //Metodo che restituisce una lista di ElementoListaPrenotazioni cercando per CF
         public static List<ElementoListaPrenotazioni> GetElementiListaPrenotazioniCF(string CF)
         {
+
+            System.Diagnostics.Debug.WriteLine("CF" + CF);
             List<ElementoListaPrenotazioni> elementiListaPrenotazioni = new List<ElementoListaPrenotazioni>();
 
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();

@@ -33,11 +33,13 @@ namespace Albergo.Controllers
         [HttpGet]
         public JsonResult Ricerca2(string CF) 
         {
+            System.Diagnostics.Debug.WriteLine("CF RICERCA 2" + CF);
+            System.Diagnostics.Debug.WriteLine("RICERCA 2");
             List<ElementoListaPrenotazioni> ListaPrenotazioniCF = ElementoListaPrenotazioni.GetElementiListaPrenotazioniCF(CF);
 
-            var jsonData2 = ListaPrenotazioniCF;
+            
 
-            return Json(jsonData2, JsonRequestBehavior.AllowGet);
+            return Json(ListaPrenotazioniCF, JsonRequestBehavior.AllowGet);
         }
     }
 }
