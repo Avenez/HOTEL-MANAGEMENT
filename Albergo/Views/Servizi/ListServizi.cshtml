@@ -24,7 +24,7 @@
                 <div class="col">Caparra</div>
                 <div class="col">Costo</div>
                 <div class="col">Tipo Soggiorno</div>
-                <div class="col">Controlli</div>
+                
             </div>
 
                 <div class="">
@@ -40,18 +40,7 @@
                         <div class="col">@Prenotazione.Caparra €</div>
                         <div class="col">@Prenotazione.Costo €</div>
                         <div class="col">@Prenotazione.TipoSoggiorno</div>
-                        <div class="col">
-
-                            <a href="@Url.Action("EditPrenotazione", "Prenotazione", new { idPrenotazione = item.idPrenotazione })" class="btn btn-warning">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                            <a href="@Url.Action("DelPrenotazione", "Prenotazione" ,new { idPrenotazione = item.idPrenotazione })" class="btn btn-danger ms-1">
-                                <i class="bi bi-trash"></i>
-                            </a>
-                            <a href="@Url.Action("ListServiziAggiunti", "Servizi" ,new { idPrenotazione = item.idPrenotazione })" class="btn btn-info mt-2">
-                                <i class="bi bi-plus-square"> Servizi</i>
-                            </a>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -70,7 +59,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Descrizione, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.Descrizione, ViewBag.ViewBag.dropListServizi as SelectList, "Seleziona un Servizio", new { @class = "form-control", required = "required" })
+                            @Html.DropDownListFor(model => model.Descrizione, ViewBag.dropListServizi as SelectList, "Seleziona un Servizio", new { @class = "form-control", required = "required" })
                             @Html.ValidationMessageFor(model => model.Descrizione, "", new { @class = "text-danger" })
                         </div>
                     </div>
