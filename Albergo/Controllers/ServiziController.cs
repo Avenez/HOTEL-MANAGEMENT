@@ -66,9 +66,12 @@ namespace Albergo.Controllers
 
         //Action che elimina il servizio aggiuntivo mediante il metodo nel model
         [HttpGet]
-        public ActionResult DelServizio(int idPrenotazione, DateTime Data, string Descrizione)
+        public ActionResult DelServizio(int idPrenotazione, int idSagg)
         {
-            ServizioAggiuntivo.CancellaServiziAggiuntiviIdDateDe(idPrenotazione, Data, Descrizione);
+            System.Diagnostics.Debug.WriteLine("idP " + idPrenotazione);
+            System.Diagnostics.Debug.WriteLine("idSagg " + idSagg);
+   
+            ServizioAggiuntivo.CancellaServiziAggiuntiviIdDateDe(idSagg);
 
 
             return RedirectToAction("ListServizi", "Servizi", new { idPrenotazione = idPrenotazione });

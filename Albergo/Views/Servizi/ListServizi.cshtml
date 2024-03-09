@@ -107,7 +107,7 @@
         <div class="col">
             <div class="row">
                 <div class="col" style=" height:500px; overflow-x:clip; overflow-y:scroll ">
-                    <div class="row mt-2 mb-3  fw-bold text-white p-3 bg-dark" style="position:sticky; top:0px; z-index:100000000" >
+                    <div class="row mt-2 mb-3  fw-bold text-white p-3 glass" style="position:sticky; top:0px; z-index:100000000" >
 
 
                         <div class="col">Descrizione</div>
@@ -131,7 +131,7 @@
                                 <div class="col">@item.Prezzo €</div>
 
                                 <div class="col">
-                                    <a href="@Url.Action("DelServizio", "Servizi" ,new { idPrenotazione = item.idPrenotazione, Data = item.Data , Descrizione = item.Descrizione })" class="btn btn-danger ms-1">
+                                    <a href="@Url.Action("DelServizio", "Servizi" ,new { idPrenotazione = item.idPrenotazione, idSagg = item.idSagg})" class="btn btn-danger ms-1">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </div>

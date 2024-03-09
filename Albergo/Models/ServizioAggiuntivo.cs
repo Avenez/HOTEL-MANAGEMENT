@@ -11,6 +11,11 @@ namespace Albergo.Models
 {
     public class ServizioAggiuntivo
     {
+
+        [ScaffoldColumn(false)]
+        public int idSagg { get; set; }
+
+
         [Required]
         [Display(Name = "Scegliere un servizio")]
         public string Descrizione { get; set; }
@@ -36,8 +41,9 @@ namespace Albergo.Models
         public ServizioAggiuntivo() { }
 
 
-        public ServizioAggiuntivo(string descrizione, DateTime Data, int Qta, decimal Prezzo, int idPrenotazione)
+        public ServizioAggiuntivo(int idSagg, string descrizione, DateTime Data, int Qta, decimal Prezzo, int idPrenotazione)
         {
+            this.idSagg = idSagg;
             Descrizione = descrizione;
             this.Data = Data;
             this.Qta = Qta;
@@ -94,8 +100,9 @@ namespace Albergo.Models
 
                     while (reader.Read())
                     {
-                        ServizioAggiuntivo servizio = new ServizioAggiuntivo
-                        {
+                    ServizioAggiuntivo servizio = new ServizioAggiuntivo
+                    {
+                            idSagg = Convert.ToInt32(reader["idSagg"]),
                             Descrizione = Convert.ToString(reader["Descrizione"]),
                             Data = Convert.ToDateTime(reader["Data"]),
                             Qta = Convert.ToInt32(reader["Qta"]),
@@ -157,7 +164,7 @@ namespace Albergo.Models
         //-id della prenotazione
         //-Data aggiunta
         //-descrizione
-        public static void CancellaServiziAggiuntiviIdDateDe(int idPrenotazione, DateTime data, string descrizione)
+        public static void CancellaServiziAggiuntiviIdDateDe(int idSagg)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connectionStringDb"].ToString();
             SqlConnection conn = new SqlConnection(connectionString);
@@ -165,16 +172,15 @@ namespace Albergo.Models
             try
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM ServiziAggiunti WHERE idPrenotazione = @idPrenotazione AND Data = @data AND Descrizione = @descrizione", conn);
-                cmd.Parameters.AddWithValue("@idPrenotazione", idPrenotazione);
-                cmd.Parameters.AddWithValue("@data", data);
-                cmd.Parameters.AddWithValue("@descrizione", descrizione);
+                SqlCommand cmd = new SqlCommand("DELETE FROM ServiziAggiunti WHERE idSagg = @idSagg", conn);
+                cmd.Parameters.AddWithValue("@idSagg", idSagg);
+
 
                 int rowsAffected = cmd.ExecuteNonQuery();
 
                 if (rowsAffected > 0)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Cancellazione dei servizi aggiuntivi per la prenotazione con ID {idPrenotazione}, data {data} e descrizione {descrizione} avvenuta con successo");
+                    System.Diagnostics.Debug.WriteLine($"Cancellazione dei servizi aggiuntivi per la prenotazione con ID {idSagg}");
                 }
                 else
                 {
